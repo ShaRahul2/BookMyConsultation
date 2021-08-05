@@ -47,40 +47,6 @@ public class DoctorInfoEntity {
 
     }
 
-    public DoctorInfoEntity(String firstName, String lastName, String speciality, String dob, String mobile, String emailId, String pan, String status, String approvedBy, String approverComments, Date registrationDate, Date verificationDate) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.speciality = speciality;
-        this.dob = dob;
-        this.mobile = mobile;
-        this.emailId = emailId;
-        this.pan = pan;
-        this.status = status;
-        this.approvedBy = approvedBy;
-        this.approverComments = approverComments;
-        this.registrationDate = registrationDate;
-        this.verificationDate = verificationDate;
-    }
-
-    public DBObject createDBObject() {
-        BasicDBObjectBuilder docBuilder = BasicDBObjectBuilder.start();
-        //docBuilder.append("_id", this.getId());
-        docBuilder.append("firstName", this.getFirstName());
-        docBuilder.append("lastName", this.getLastName());
-        docBuilder.append("speciality", this.getSpeciality());
-        docBuilder.append("dob", this.getDob());
-        docBuilder.append("mobile", this.getMobile());
-        docBuilder.append("emailId", this.getEmailId());
-        docBuilder.append("pan", this.getPan());
-        docBuilder.append("status", this.getStatus());
-        docBuilder.append("approvedBy", this.getApprovedBy());
-        docBuilder.append("approverComments", this.getApproverComments());
-        docBuilder.append("registrationDate", this.getRegistrationDate());
-        docBuilder.append("verificationDate", this.getVerificationDate());
-
-        return docBuilder.get();
-    }
-
     @Override
     public String toString() {
         return "DoctorInfoEntity{" +
