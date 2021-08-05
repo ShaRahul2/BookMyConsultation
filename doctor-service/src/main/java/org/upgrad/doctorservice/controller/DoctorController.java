@@ -10,6 +10,8 @@ import org.upgrad.doctorservice.model.dto.DoctorDto;
 import org.upgrad.doctorservice.model.entity.DoctorInfoEntity;
 import org.upgrad.doctorservice.service.doctor.DoctorService;
 
+import javax.validation.Valid;
+
 @RestController
 public class DoctorController {
 
@@ -21,7 +23,7 @@ public class DoctorController {
     }
 
     @PostMapping("/doctors")
-    public ResponseEntity<DoctorInfoEntity> doctorRegistration(@RequestBody DoctorDto doctorDto) throws Exception {
+    public ResponseEntity<DoctorInfoEntity> doctorRegistration(@Valid @RequestBody DoctorDto doctorDto){
         DoctorInfoEntity bookingInfo = this.doctorService.doctorRegistration(doctorDto);
         return new ResponseEntity<DoctorInfoEntity>(bookingInfo, HttpStatus.CREATED);
     }
