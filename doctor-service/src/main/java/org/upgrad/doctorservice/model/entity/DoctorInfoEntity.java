@@ -1,7 +1,5 @@
 package org.upgrad.doctorservice.model.entity;
 
-import com.mongodb.BasicDBObjectBuilder;
-import com.mongodb.DBObject;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.upgrad.doctorservice.CustomValidator.CustomEmailValidator;
@@ -11,17 +9,17 @@ import java.util.Date;
 
 @Document(collection = "doctorService")
 public class DoctorInfoEntity {
-    @NotBlank
+    @NotNull
     @Size(min=2, max=10)
     private String firstName;
 
-    @NotBlank
+    @NotNull
     @Size(min=2, max=10)
     private String lastName;
 
     private String speciality;
 
-    @NotBlank(message = "Please enter your Date of birth.")
+    @NotNull(message = "Please enter your Date of birth.")
     @DateTimeFormat(pattern = "dd.MM.yyyy")
     @Past(message = "That's impossible.")
     private String dob;
@@ -43,7 +41,7 @@ public class DoctorInfoEntity {
     private Date registrationDate;
     private Date verificationDate;
 
-    public DoctorInfoEntity(){
+    public DoctorInfoEntity() {
 
     }
 
