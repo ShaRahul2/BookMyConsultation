@@ -7,29 +7,28 @@ import javax.validation.constraints.*;
 import java.util.Date;
 
 public class DoctorDto {
-    @NotNull
+    @NotBlank(message= "Please enter valid first name")
     @Size(min=2, max=10)
     private String firstName;
 
-    @NotNull
+    @NotBlank(message= "Please enter valid last name")
     @Size(min=2, max=10)
     private String lastName;
 
     private String speciality;
 
-    @NotNull(message = "Please enter your Date of birth.")
-    @DateTimeFormat(pattern = "dd.MM.yyyy")
-    @Past(message = "That's impossible.")
+    @NotBlank(message = "Please enter your Date of birth.")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     private String dob;
 
-    @NotNull
+    @NotBlank
     @Pattern(regexp="(^[0-9]{10})", message = "Please enter a valid mobile no")
     private String mobile;
-    @NotNull
+
     @CustomEmailValidator
     private String emailId;
 
-    @NotNull
+    @NotBlank
     @Size(min=10, max=10 )
     @Pattern(regexp = "([A-Z]{5}[0-9]{4}[A-Z]{1})", message = "Please enter valid pan card number")
     private String pan;
