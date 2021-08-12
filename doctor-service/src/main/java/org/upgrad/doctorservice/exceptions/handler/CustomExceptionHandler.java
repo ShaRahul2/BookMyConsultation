@@ -19,13 +19,16 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 
     private String NO_RECORDS_FOUND = "NO_RECORDS_FOUND";
     @ExceptionHandler(RecordNotFoundException.class)
-    public final ResponseEntity<CustomResponse> handleRecordNotFoundException(RecordNotFoundException e, WebRequest req) {
+    public final ResponseEntity<Object> handleRecordNotFoundException(RecordNotFoundException e, WebRequest req) {
 
-        List<String> errorDetails = new ArrayList<String>();
-        errorDetails.add(e.getLocalizedMessage());
-        CustomResponse response = new CustomResponse(NO_RECORDS_FOUND, HttpStatus.BAD_REQUEST.value(), errorDetails);
-
-        return new ResponseEntity(errorDetails, HttpStatus.BAD_REQUEST);
+//        List<String> errorDetails = new ArrayList<String>();
+//        errorDetails.add(e.getLocalizedMessage());
+//        CustomResponse response = new CustomResponse(NO_RECORDS_FOUND, HttpStatus.BAD_REQUEST.value(), errorDetails);
+        Map<String, Object> body = new LinkedHashMap<>();
+        body.put("errorCode", "ERR_RESOURCE_NOT_FOUND");
+        body.put("errorMessage", "Requested resource is not avaiable");
+        body.put("errorFields", null);
+        return new ResponseEntity(body, HttpStatus.BAD_REQUEST);
     }
 
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders httpHeaders, HttpStatus httpStatus, WebRequest webRequest){
