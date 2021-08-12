@@ -1,39 +1,22 @@
 package org.upgrad.doctorservice.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.upgrad.doctorservice.CustomValidator.CustomEmailValidator;
 
-import javax.validation.constraints.*;
 import java.util.Date;
 
 @Document(collection = "doctorService")
 public class DoctorInfoEntity {
-    @NotNull
-    @Size(min=2, max=10)
+
+    private String id;
     private String firstName;
-
-    @NotNull
-    @Size(min=2, max=10)
     private String lastName;
-
     private String speciality;
 
-    @NotNull(message = "Please enter your Date of birth.")
-    @DateTimeFormat(pattern = "dd.MM.yyyy")
-    @Past(message = "That's impossible.")
     private String dob;
-
-    @NotNull
-    @Pattern(regexp="(^[0-9]{10})", message = "Please enter a valid mobile no")
     private String mobile;
-    @NotNull
-    @CustomEmailValidator
     private String emailId;
-
-    @NotNull
-    @Size(min=10, max=10 )
-    @Pattern(regexp = "([A-Z]{5}[0-9]{4}[A-Z]{1})", message = "Please enter valid pan card number")
     private String pan;
     private String status;
     private String approvedBy;
@@ -48,6 +31,7 @@ public class DoctorInfoEntity {
     @Override
     public String toString() {
         return "DoctorInfoEntity{" +
+                "id='" + id + '\'' +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", speciality='" + speciality + '\'' +
@@ -61,6 +45,14 @@ public class DoctorInfoEntity {
                 ", registrationDate=" + registrationDate +
                 ", verificationDate=" + verificationDate +
                 '}';
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -127,6 +119,7 @@ public class DoctorInfoEntity {
         this.status = status;
     }
 
+    @JsonIgnore
     public String getApprovedBy() {
         return approvedBy;
     }
@@ -135,6 +128,7 @@ public class DoctorInfoEntity {
         this.approvedBy = approvedBy;
     }
 
+    @JsonIgnore
     public String getApproverComments() {
         return approverComments;
     }
@@ -150,7 +144,7 @@ public class DoctorInfoEntity {
     public void setRegistrationDate(Date registrationDate) {
         this.registrationDate = registrationDate;
     }
-
+    @JsonIgnore
     public Date getVerificationDate() {
         return verificationDate;
     }

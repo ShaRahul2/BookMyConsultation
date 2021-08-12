@@ -1,6 +1,7 @@
 package org.upgrad.doctorservice.model.mapper;
 
 
+import org.joda.time.DateTime;
 import org.upgrad.doctorservice.model.dto.DoctorDto;
 import org.upgrad.doctorservice.model.entity.DoctorInfoEntity;
 
@@ -13,15 +14,26 @@ public class DoctorMapper {
         if (doctorDto.getSpeciality() != null) {
             doctorInfo.setSpeciality(doctorDto.getSpeciality());
         }
-        doctorInfo.setSpeciality("General Physician");
+        else {
+            doctorInfo.setSpeciality("General Physician");
+        }
         doctorInfo.setDob(doctorDto.getDob());
         doctorInfo.setMobile(doctorDto.getMobile());
         doctorInfo.setEmailId(doctorDto.getEmailId());
         doctorInfo.setPan(doctorDto.getPan());
-        doctorInfo.setStatus(doctorDto.getStatus());
+        if(doctorDto.getStatus()!= null){
+            doctorInfo.setStatus(doctorDto.getStatus());
+        }else {
+            doctorInfo.setStatus("Pending");
+        }
         doctorInfo.setApprovedBy(doctorDto.getApprovedBy());
         doctorInfo.setApproverComments(doctorDto.getApproverComments());
-        doctorInfo.setRegistrationDate(doctorDto.getRegistrationDate());
+        if(doctorDto.getRegistrationDate() != null){
+            doctorInfo.setRegistrationDate(doctorDto.getRegistrationDate());
+        }
+        else {
+            doctorInfo.setRegistrationDate(DateTime.now().toDate());
+        }
         doctorInfo.setVerificationDate(doctorDto.getVerificationDate());
         return doctorInfo;
     }
