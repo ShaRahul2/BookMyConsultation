@@ -27,12 +27,12 @@ public class DoctorController {
 
     DoctorService doctorService;
 
-    @Autowired
-    private AWSS3Service awss3Service;
+    AWSS3Service awss3Service;
 
     @Autowired
-    public DoctorController(DoctorService doctorService) {
+    public DoctorController(DoctorService doctorService, AWSS3Service awss3Service) {
         this.doctorService = doctorService;
+        this.awss3Service = awss3Service;
     }
 
     @SneakyThrows
