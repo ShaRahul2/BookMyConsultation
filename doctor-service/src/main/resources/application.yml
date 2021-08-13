@@ -6,7 +6,7 @@ spring:
     name: doctor-service
   data:
     mongodb:
-      uri: mongodb://rSharma:abc123@ec2-35-173-136-183.compute-1.amazonaws.com/doctorservice?authSource=admin
+      uri: mongodb://rSharma:abc123@ec2-54-163-211-138.compute-1.amazonaws.com/doctorservice?authSource=admin
 #      host: ec2-54-204-240-140.compute-1.amazonaws.com
 #      port: 27017
 #      database: doctorservice

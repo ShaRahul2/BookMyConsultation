@@ -38,12 +38,12 @@ public class SesEmailVerificationService {
     public void init(){
         // When you hit the endpoint to verify the email this needs to be the access key for your AWS account
         // When you hit the endpoint to send an email this value needs to be updated to the Smtp username that you generated
-        accessKey="AKIA44TR2NQA2XILWMYX";
+        accessKey="AKIA44TR2NQA7UNBVCM6";
 
 
         // When you hit the endpoint to verify the email this needs to be the secret key for your AWS account
         // When you hit the endpoint to send an email this value needs to be updated to the Smtp password that you generated
-        secretKey="5Q2azCot3VJuzGsw3FvPGXAZrzu3ATWpRSXFMb/t";//
+        secretKey="BOY50jFhcn7K4Mozkf+2TAzlWaKOJXxpp+qIZT1XUZHz";//
         StaticCredentialsProvider staticCredentialsProvider = StaticCredentialsProvider
                 .create(AwsBasicCredentials.create(accessKey,secretKey));
         sesClient = SesClient.builder()
