@@ -1,15 +1,12 @@
 package org.upgrad.userservice.service.userService;
 
 import freemarker.template.TemplateException;
-import org.springframework.http.ResponseEntity;
 import org.upgrad.userservice.exceptions.RecordNotFoundException;
-//import org.upgrad.userservice.model.dto.UserDto;
-//import org.upgrad.userservice.model.entity.UserInfoEntity;
+import org.upgrad.userservice.model.dto.UserServiceDto;
+import org.upgrad.userservice.model.entity.UserInfoEntity;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
-import java.util.List;
-import java.util.Optional;
 
 public interface UserService {
 
@@ -20,5 +17,7 @@ public interface UserService {
      * @param userDto
      * @return
      */
+    UserInfoEntity userRegistration(UserServiceDto userDto) throws TemplateException, IOException, MessagingException;
 
+    UserInfoEntity getUser(String userId) throws RecordNotFoundException;
 }

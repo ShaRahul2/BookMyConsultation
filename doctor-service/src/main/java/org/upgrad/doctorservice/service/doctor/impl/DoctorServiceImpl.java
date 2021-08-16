@@ -41,6 +41,15 @@ public class DoctorServiceImpl implements DoctorService {
 
     public DoctorInfoEntity doctorRegistration(DoctorDto doctorRequest) throws TemplateException, IOException, MessagingException {
         var doctorInfo = DoctorMapper.convertDTOToEntity(doctorRequest);
+        if (doctorInfo.getSpeciality() == null) {
+            doctorInfo.setSpeciality("General Physician");
+        }
+        if(doctorInfo.getStatus()== null){
+            doctorInfo.setStatus("Pending");
+        }
+        if(doctorInfo.getRegistrationDate() == null){
+            doctorInfo.setRegistrationDate(DateTime.now().toDate());
+        }
         var sb = doctorDao.save(doctorInfo);
         //verifyEmail.verifyEmail(sb.getEmailId());
         verifyEmail.sendEmail(doctorRequest);
@@ -75,6 +84,6 @@ public class DoctorServiceImpl implements DoctorService {
 
     public DoctorInfoEntity getDoctorById(String doctorId) throws RecordNotFoundException {
         var obj = doctorDao.findById(doctorId);
-        return obj.orElseThrow(() -> new RecordNotFoundException("Not Found Test 1"));
+        return obj.orElseThrow(() -> new RecordNotFoundException(""));
     }
 }

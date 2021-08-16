@@ -1,0 +1,27 @@
+server:
+  port: ${PORT:8083}
+
+spring:
+  application:
+    name: appointment-service
+  datasource:
+    url: jdbc:mysql://sweet-home.crojtkyz2wlp.us-east-1.rds.amazonaws.com:3306/booking
+    username: admin
+    password: admin123
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${DISCOVERY_URL:http://localhost:8761}/eureka/
+
+ribbon:
+  eureka:
+    enabled: true

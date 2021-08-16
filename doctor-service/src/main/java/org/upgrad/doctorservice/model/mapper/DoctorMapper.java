@@ -11,29 +11,15 @@ public class DoctorMapper {
         DoctorInfoEntity doctorInfo = new DoctorInfoEntity();
         doctorInfo.setFirstName(doctorDto.getFirstName());
         doctorInfo.setLastName(doctorDto.getLastName());
-        if (doctorDto.getSpeciality() != null) {
-            doctorInfo.setSpeciality(doctorDto.getSpeciality());
-        }
-        else {
-            doctorInfo.setSpeciality("General Physician");
-        }
+        doctorInfo.setSpeciality(doctorDto.getSpeciality());
         doctorInfo.setDob(doctorDto.getDob());
         doctorInfo.setMobile(doctorDto.getMobile());
         doctorInfo.setEmailId(doctorDto.getEmailId());
         doctorInfo.setPan(doctorDto.getPan());
-        if(doctorDto.getStatus()!= null){
-            doctorInfo.setStatus(doctorDto.getStatus());
-        }else {
-            doctorInfo.setStatus("Pending");
-        }
+        doctorInfo.setStatus(doctorDto.getStatus());
         doctorInfo.setApprovedBy(doctorDto.getApprovedBy());
         doctorInfo.setApproverComments(doctorDto.getApproverComments());
-        if(doctorDto.getRegistrationDate() != null){
-            doctorInfo.setRegistrationDate(doctorDto.getRegistrationDate());
-        }
-        else {
-            doctorInfo.setRegistrationDate(DateTime.now().toDate());
-        }
+        doctorInfo.setRegistrationDate(doctorDto.getRegistrationDate());
         doctorInfo.setVerificationDate(doctorDto.getVerificationDate());
         return doctorInfo;
     }
