@@ -11,16 +11,22 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
-
+  data:
+    mongodb:
+      uri: mongodb://rSharma:abc123@ec2-3-87-79-151.compute-1.amazonaws.com/bmc?authSource=admin
 
 eureka:
   client:
-    serviceUrl:
-      defaultZone: ${DISCOVERY_URL:http://localhost:8761}/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://${EUREKA_HOST_NAME:localhost}:8761/eureka/
+  instance:
+    hostname: ${EUREKA_HOST_NAME:localhost}
 
 ribbon:
   eureka:

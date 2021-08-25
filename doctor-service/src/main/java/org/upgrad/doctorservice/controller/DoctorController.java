@@ -69,6 +69,7 @@ public class DoctorController {
         return new ResponseEntity<>(obj, HttpStatus.OK);
     }
 
+    @CrossOrigin
     @GetMapping(value = "/doctors/{doctorId}")
     public ResponseEntity<DoctorInfoEntity> getDoctorById(@PathVariable String doctorId) throws RecordNotFoundException {
         var obj = this.doctorService.getDoctorById(doctorId);
