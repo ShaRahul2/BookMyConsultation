@@ -1,16 +1,17 @@
 package org.upgrad.appointmentservice.model.entity;
 
 
-import javax.persistence.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.IndexDirection;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
-@Table(name = "user", schema = "appointment", catalog = "")
+@Document(collection = "user")
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
-    @Column(name = "username", length = 200, unique = true)
+    @Indexed(unique = true, direction = IndexDirection.DESCENDING, dropDups = true)
     private String username;
     private String password;
     private String role;

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+import org.upgrad.appointmentservice.exceptions.PendingPaymentException;
 import org.upgrad.appointmentservice.exceptions.RecordNotFoundException;
 import org.upgrad.appointmentservice.model.dto.CustomResponse;
 
@@ -40,6 +41,15 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 
         body.put("errorFields", errors);
         return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(PendingPaymentException.class)
+    public final ResponseEntity<Object> handlePendingPaymentException(PendingPaymentException e, WebRequest req) {
+
+        Map<String, Object> body = new LinkedHashMap<>();
+        body.put("errorCode", "ERR_PAYMENT_PENDING");
+        body.put("errorMessage", "Prescription cannot be issued since the payment status is pending");
+        return new ResponseEntity(body, HttpStatus.BAD_REQUEST);
     }
 }
 
