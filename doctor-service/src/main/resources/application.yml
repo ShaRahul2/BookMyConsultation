@@ -6,7 +6,7 @@ spring:
     name: doctor-service
   data:
     mongodb:
-      uri: mongodb://rSharma:abc123@ec2-3-87-79-151.compute-1.amazonaws.com/bmc?authSource=admin
+      uri: mongodb://rSharma:abc123@ec2-23-22-238-164.compute-1.amazonaws.com/bmc?authSource=admin
 #      host: ec2-54-204-240-140.compute-1.amazonaws.com
 #      port: 27017
 #      database: doctorservice
@@ -18,7 +18,7 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://${EUREKA_HOST_NAME:localhost}:8761/eureka/
+      defaultZone: http://${EUREKA_HOST_NAME:localhost}:8761
   instance:
     hostname: ${EUREKA_HOST_NAME:localhost}
 

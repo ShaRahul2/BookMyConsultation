@@ -7,6 +7,9 @@ import java.text.ParseException;
 
 public class AppointmentMapper {
 
+    /*
+    converting Dto object into Appointment Entity type object
+     */
     public static AppointmentInfoEntity convertDTOToEntity(AppointmentDto dto) throws ParseException {
         AppointmentInfoEntity infoEntity = new AppointmentInfoEntity();
         infoEntity.setAppointmentdate(dto.getAppointmentDate());

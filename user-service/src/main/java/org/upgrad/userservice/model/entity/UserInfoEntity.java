@@ -70,4 +70,17 @@ public class UserInfoEntity {
     public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
     }
+
+    @Override
+    public String toString() {
+        return "UserInfoEntity{" +
+                "id='" + id + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", dob='" + dob + '\'' +
+                ", mobile='" + mobile + '\'' +
+                ", emailId='" + emailId + '\'' +
+                ", createdDate=" + createdDate +
+                '}';
+    }
 }

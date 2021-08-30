@@ -1,12 +1,12 @@
 server:
-  port: ${PORT:8082}
+  port: ${PORT:8083}
 
 spring:
   application:
     name: user-service
   data:
     mongodb:
-      uri: mongodb://rSharma:abc123@ec2-3-87-174-105.compute-1.amazonaws.com/bmc?authSource=admin
+      uri: mongodb://rSharma:abc123@ec2-23-22-238-164.compute-1.amazonaws.com/bmc?authSource=admin
 #      host: ec2-54-204-240-140.compute-1.amazonaws.com
 #      port: 27017
 #      database: doctorservice

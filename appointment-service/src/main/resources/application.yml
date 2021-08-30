@@ -1,5 +1,5 @@
 server:
-  port: ${PORT:8083}
+  port: ${PORT:8082}
 
 spring:
   application:
@@ -11,13 +11,13 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
   data:
     mongodb:
-      uri: mongodb://rSharma:abc123@ec2-3-87-79-151.compute-1.amazonaws.com/bmc?authSource=admin
+      uri: mongodb://rSharma:abc123@ec2-23-22-238-164.compute-1.amazonaws.com/bmc?authSource=admin
 
 eureka:
   client:

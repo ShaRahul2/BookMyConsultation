@@ -20,7 +20,7 @@ public class AppointmentInfoEntity {
     private Date appointmentdate;
 
     @Column(name = "created_date", nullable = true)
-    private DateTime createddate;
+    private Date createddate;
 
     @Column(name = "doctor_id", nullable = true, length = 255)
     private String doctorid;
@@ -52,7 +52,7 @@ public class AppointmentInfoEntity {
     public AppointmentInfoEntity() {
     }
 
-    public AppointmentInfoEntity(String appointmentid, Date appointmentdate, DateTime createddate, String doctorid, String priormedicalhistory, String status, String symtoms, String timeslots, String userid, String useremailid, String username, String doctorname) {
+    public AppointmentInfoEntity(String appointmentid, Date appointmentdate, Date createddate, String doctorid, String priormedicalhistory, String status, String symtoms, String timeslots, String userid, String useremailid, String username, String doctorname) {
         this.appointmentid = appointmentid;
         this.appointmentdate = appointmentdate;
         this.createddate = createddate;
@@ -83,11 +83,11 @@ public class AppointmentInfoEntity {
         this.appointmentdate = appointmentdate;
     }
     @JsonIgnore
-    public DateTime getCreateddate() {
+    public Date getCreateddate() {
         return createddate;
     }
 
-    public void setCreateddate(DateTime createddate) {
+    public void setCreateddate(Date createddate) {
         this.createddate = createddate;
     }
 

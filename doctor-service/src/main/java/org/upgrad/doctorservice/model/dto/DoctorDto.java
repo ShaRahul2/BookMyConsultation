@@ -134,4 +134,22 @@ public class DoctorDto {
     public void setVerificationDate(Date verificationDate) {
         this.verificationDate = verificationDate;
     }
+
+    @Override
+    public String toString() {
+        return "DoctorDto{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", speciality='" + speciality + '\'' +
+                ", dob='" + dob + '\'' +
+                ", mobile='" + mobile + '\'' +
+                ", emailId='" + emailId + '\'' +
+                ", pan='" + pan + '\'' +
+                ", status='" + status + '\'' +
+                ", approvedBy='" + approvedBy + '\'' +
+                ", approverComments='" + approverComments + '\'' +
+                ", registrationDate=" + registrationDate +
+                ", verificationDate=" + verificationDate +
+                '}';
+    }
 }
