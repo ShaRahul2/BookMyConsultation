@@ -6,7 +6,9 @@ import org.upgrad.appointmentservice.model.entity.PrescriptionInfoEntity;
 import java.text.ParseException;
 
 public class PrescriptionMapper {
-
+    /*
+    converting Dto object into Prescription Entity type object
+     */
     public static PrescriptionInfoEntity convertDTOToEntity(PrescriptionDto dto) {
         PrescriptionInfoEntity infoEntity = new PrescriptionInfoEntity();
         infoEntity.setDoctorId(dto.getDoctorId());

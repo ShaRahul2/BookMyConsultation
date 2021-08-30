@@ -38,6 +38,9 @@ public class UserController {
         return ResponseEntity.ok("It's running live");
     }
 
+    /*
+    This endpoint will help us to generate JWT token which will help us to communicate with the endpoints
+     */
     @PostMapping("/generate-token")
     public ResponseEntity generateToken(@RequestBody JwtTokenRequest tokenRequest) {
         Authentication authentication = authenticationManager.authenticate(
@@ -48,6 +51,9 @@ public class UserController {
         return ResponseEntity.ok(token);
     }
 
+    /*
+    Return all the users for Admin role requests only
+     */
     @GetMapping("/user/all")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity getAllUsers() {

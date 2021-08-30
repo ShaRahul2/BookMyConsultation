@@ -29,19 +29,38 @@ public class UserServiceController {
         this.awss3Service = awss3Service;
     }
 
+    /**
+     *
+     * @param userServiceDto:  requested data firstName, lastName, dob, emailID, mobile.
+     * @return UserInfoEntity: after saving the records in DB
+     */
     @SneakyThrows
     @PostMapping("/users")
-    public ResponseEntity<UserInfoEntity> doctorRegistration(@Valid @RequestBody UserServiceDto userServiceDto) throws TemplateException, MessagingException, IOException {
+    public ResponseEntity<UserInfoEntity> doctorRegistration(@Valid @RequestBody UserServiceDto userServiceDto){
         UserInfoEntity userInfo = this.userService.userRegistration(userServiceDto);
         return new ResponseEntity<UserInfoEntity>(userInfo, HttpStatus.CREATED);
     }
 
+    /**
+    This endpoint is responsible for collecting information about the user.
+    URI: /users/{userID}
+    HTTP method: GET
+    Role: USER, ADMIN.
+     @param userID: to find the corresponding result of userID
+     */
     @GetMapping(value = "/users/{userID}")
     public ResponseEntity<UserInfoEntity> getDoctorById(@PathVariable String userID) throws RecordNotFoundException {
         var obj = this.userService.getUser(userID);
         return new ResponseEntity<>(obj, HttpStatus.OK);
     }
 
+    /**
+     *
+     * @param id : User id for which user you are uploading the files
+     * @param files : files you wanted to upload on S3
+     * @return
+     * @throws IOException
+     */
     @PostMapping(value = "/users/{id}/documents")
     public ResponseEntity<String> uploadFiles(@PathVariable("id") String id, @RequestParam MultipartFile[] files) throws IOException {
         for (MultipartFile file : files) {

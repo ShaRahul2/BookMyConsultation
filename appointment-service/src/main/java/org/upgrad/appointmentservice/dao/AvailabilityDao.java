@@ -20,7 +20,7 @@ public interface AvailabilityDao extends JpaRepository<AvailabilityInfoEntity, S
     @Query("Select a.timeslot from AvailabilityInfoEntity a where a.availabilitydate = ?1")
     List<String> findByAvailabilitydate(Date availabilityDate);
 
-    @Query("Select a from AvailabilityInfoEntity a where a.doctorid = :doctorId and a.availabilitydate = DATE(:availabilitydate)  and a.timeslot = :timeSlot")
+    @Query("Select a from AvailabilityInfoEntity a where a.doctorid = :doctorId and a.availabilitydate = DATE(:availabilitydate)  and a.timeslot = :timeSlot and a.is_booked = 0")
     AvailabilityInfoEntity findByDoctoridAndAvailabilitydateAndTimeslot(String doctorId, String availabilitydate, String timeSlot);
 
 }

@@ -3,6 +3,7 @@ package org.upgrad.doctorservice.service.ses;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
@@ -31,19 +32,23 @@ public class SesEmailVerificationService {
     private SesClient sesClient;
     private final FreeMarkerConfigurer configurer;
     private String fromEmail = "sharma.rahul22012@gmail.com";//needs to be a verified email id
+
+    @Value("${aws.access_key_id}")
     private String accessKey;
+
+    @Value("${aws.secret_access_key}")
     private String secretKey;
 
     @PostConstruct
     public void init(){
         // When you hit the endpoint to verify the email this needs to be the access key for your AWS account
         // When you hit the endpoint to send an email this value needs to be updated to the Smtp username that you generated
-        accessKey="AKIA44TR2NQA7UNBVCM6";
+        //accessKey="AKIA44TR2NQA7UNBVCM6";
 
 
         // When you hit the endpoint to verify the email this needs to be the secret key for your AWS account
         // When you hit the endpoint to send an email this value needs to be updated to the Smtp password that you generated
-        secretKey="BOY50jFhcn7K4Mozkf+2TAzlWaKOJXxpp+qIZT1XUZHz";//
+        //secretKey="BOY50jFhcn7K4Mozkf+2TAzlWaKOJXxpp+qIZT1XUZHz";//
         StaticCredentialsProvider staticCredentialsProvider = StaticCredentialsProvider
                 .create(AwsBasicCredentials.create(accessKey,secretKey));
         sesClient = SesClient.builder()

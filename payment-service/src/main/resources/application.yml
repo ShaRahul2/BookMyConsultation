@@ -6,7 +6,7 @@ spring:
     name: payment-service
   data:
     mongodb:
-      uri: mongodb://rSharma:abc123@ec2-3-87-79-151.compute-1.amazonaws.com/bmc?authSource=admin
+      uri: mongodb://rSharma:abc123@ec2-23-22-238-164.compute-1.amazonaws.com/bmc?authSource=admin
 
 eureka:
   client:

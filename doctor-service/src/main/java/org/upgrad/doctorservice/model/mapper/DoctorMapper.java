@@ -23,4 +23,21 @@ public class DoctorMapper {
         doctorInfo.setVerificationDate(doctorDto.getVerificationDate());
         return doctorInfo;
     }
+
+    public static DoctorDto convertEntityToDTO(DoctorInfoEntity doctorInfo) {
+        DoctorDto doctorDto = new DoctorDto();
+        doctorDto.setFirstName(doctorInfo.getFirstName());
+        doctorDto.setLastName(doctorInfo.getLastName());
+        doctorDto.setSpeciality(doctorInfo.getSpeciality());
+        doctorDto.setDob(doctorInfo.getDob());
+        doctorDto.setMobile(doctorInfo.getMobile());
+        doctorDto.setEmailId(doctorInfo.getEmailId());
+        doctorDto.setPan(doctorInfo.getPan());
+        doctorDto.setStatus(doctorInfo.getStatus());
+        doctorDto.setApprovedBy(doctorInfo.getApprovedBy());
+        doctorDto.setApproverComments(doctorInfo.getApproverComments());
+        doctorDto.setRegistrationDate(doctorInfo.getRegistrationDate());
+        doctorDto.setVerificationDate(doctorInfo.getVerificationDate());
+        return doctorDto;
+    }
 }

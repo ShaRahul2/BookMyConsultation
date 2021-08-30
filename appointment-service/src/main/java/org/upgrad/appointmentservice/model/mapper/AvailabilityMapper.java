@@ -8,7 +8,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class AvailabilityMapper {
-
+    /*
+    converting Dto object into Availability Entity type object
+     */
     public static AvailabilityInfoEntity convertDTOToEntity(AvailabilityDto dto) throws ParseException {
         AvailabilityInfoEntity availability = new AvailabilityInfoEntity();
         availability.setDoctorid(dto.getDoctorid());

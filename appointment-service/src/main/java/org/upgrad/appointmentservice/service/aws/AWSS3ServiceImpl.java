@@ -16,7 +16,9 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-
+/*
+  To upload the files into S3 bucket
+   */
 @Service
 public class AWSS3ServiceImpl implements AWSS3Service {
 
@@ -26,6 +28,7 @@ public class AWSS3ServiceImpl implements AWSS3Service {
     private AmazonS3 amazonS3;
     @Value("${aws.s3.bucket}")
     private String bucketName;
+
 
     @Override
     // @Async annotation ensures that the method is executed in a different background thread
@@ -54,6 +57,9 @@ public class AWSS3ServiceImpl implements AWSS3Service {
         return file;
     }
 
+    /*
+    Uploading into S3 bucket
+     */
     private void uploadFileToS3Bucket(String userId, final String bucketName, final File file) {
         final String uniqueFileName = userId + "_" + file.getName();
         LOGGER.info("Uploading file with name= " + uniqueFileName);

@@ -16,14 +16,30 @@ public interface DoctorService {
 
 
     /**
-     * Saves customer personal details.
+     * Saves doctordetails.
      * @param doctorDto
      * @return
      */
-    DoctorInfoEntity doctorRegistration(DoctorDto doctorDto) throws TemplateException, IOException, MessagingException;
+    DoctorInfoEntity doctorRegistration(DoctorDto doctorDto);
 
-    ResponseEntity<DoctorInfoEntity> doctorUpdate(String doctorId, String Status, UpdateDoctorDto updateDoctorDto);
+    /**
+     * updating  the doctor status
+     * @param doctorId
+     * @param Status
+     * @param updateDoctorDto
+     * @return
+     * @throws TemplateException
+     * @throws MessagingException
+     * @throws IOException
+     */
+    ResponseEntity<DoctorInfoEntity> doctorUpdate(String doctorId, String Status, UpdateDoctorDto updateDoctorDto) throws TemplateException, MessagingException, IOException;
 
+    /**
+     * fetch the resultset and filter the set basis on status and speciality
+     * @param status : active/ pending
+     * @param speciality: general-physician
+     * @return
+     */
     List<DoctorInfoEntity> getDoctorByStatus(String status, String speciality);
 
     DoctorInfoEntity getDoctorById(String doctorId) throws RecordNotFoundException;

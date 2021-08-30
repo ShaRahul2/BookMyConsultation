@@ -1,0 +1,131 @@
+version: '3.3'
+# Define services
+services:
+  doctorservice:
+    # Configuration for building the docker image for the backend service
+    build: doctor-service
+    container_name: doctorservice
+    image: bmc/doctorservice:1.0.0
+    ports:
+      - "8081:8081" # Forward the exposed port 8080 to port 8080 on the host machine
+    networks:
+      - microservicesnet
+    environment:
+      EUREKA_HOST_NAME: 54.196.193.52
+    depends_on:
+      - eurekaServer # This service depends on mysql. Start that first.
+      - mysqldb
+      - mongodb
+  appointmentservice:
+    # Configuration for building the docker image for the backend service
+    build: appointment-service
+    container_name: appointmentservice
+    image: bmc/appointmentservice:1.0.0
+    ports:
+      - "8082:8082" # Forward the exposed port 8080 to port 8080 on the host machine
+    networks:
+      - microservicesnet
+    environment:
+      MYSQL_HOST: mysqldb
+      EUREKA_HOST_NAME: 54.196.193.52
+    depends_on:
+      - eurekaServer # This service depends on mysql. Start that first.
+      - mysqldb
+      - mongodb
+  userservice:
+    # Configuration for building the docker image for the backend service
+    build: user-service
+    container_name: userservice
+    image: bmc/userservice:1.0.0
+    ports:
+      - "8083:8083" # Forward the exposed port 8080 to port 8080 on the host machine
+    networks:
+      - microservicesnet
+    environment:
+      EUREKA_HOST_NAME: 54.196.193.52
+    depends_on:
+      - eurekaServer # This service depends on mysql. Start that first.
+      - mysqldb
+      - mongodb
+  notificationservice:
+    # Configuration for building the docker image for the backend service
+    build: notification-service
+    container_name: notificationservice
+    image: bmc/notificationservice:1.0.0
+    ports:
+      - "8083:8083" # Forward the exposed port 8080 to port 8080 on the host machine
+    networks:
+      - microservicesnet
+    environment:
+      EUREKA_HOST_NAME: 54.196.193.52
+    depends_on:
+      - eurekaServer # This service depends on mysql. Start that first.
+  paymentService:
+    build: payment-service
+    container_name: paymentservice
+    image: bmc/paymentservice:1.0.0
+    ports:
+      - "8084:8084" # Map the exposed port 3000 on container to port 3000 on the host machine
+    networks:
+      - microservicesnet
+    environment:
+      APPOINTMENT_SERVICE_NAME: 54.196.193.52
+      EUREKA_HOST_NAME: 54.196.193.52
+    depends_on:
+      - eurekaServer # This service depends on mysql. Start that first.
+      - mysqldb
+      - mongodb
+  ratingServer:
+    build: rating-service
+    container_name: ratingserver
+    image: bmc/ratingserver:1.0.0
+    ports:
+      - "8085:8085" # Map the exposed port 3000 on container to port 3000 on the host machine
+    networks:
+      - microservicesnet
+    environment:
+      EUREKA_HOST_NAME: 54.196.193.52
+    depends_on:
+      - eurekaServer # This service depends on mysql. Start that first.
+      - mysqldb
+      - mongodb
+  eurekaServer:
+    build: eureka-server
+    container_name: eurekaserver
+    image: bmc/eurekaserver:1.0.0
+    ports:
+      - "8761:8761" # Map the exposed port 3000 on container to port 3000 on the host machine
+    networks:
+      - microservicesnet
+    environment:
+      EUREKA_HOST_NAME: 54.196.193.52
+    depends_on:
+      - eurekaServer # This service depends on mysql. Start that first.
+      - mysqldb
+      - mongodb
+  mysqldb:
+    image: mysql:5.7
+    container_name: mysqldb
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: user_db
+      MYSQL_USER: db_user
+      MYSQL_PASSWORD: user123
+    ports:
+      - "6033:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    environment:
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - dbdata:/data/db
+    ports:
+      - 27017:27017
+    restart: unless-stopped
+networks:
+  microservicesnet:
+    driver: bridge
